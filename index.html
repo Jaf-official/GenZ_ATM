@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let balance = 10000;
+
+      let userInput = prompt(
+        "Welcome to the GenZ Bank!\n\n" +
+          "Options:\n" +
+          "1. Check Balance\n" +
+          "2. Deposit\n" +
+          "3. Withdraw\n" +
+          "4. Transfer\n\n" +
+          "Please enter the number of your choice:"
+      );
+
+      let choice = Number(userInput);
+
+      if (choice === 1) {
+        alert("Your balance is ₦" + balance);
+      } else if (choice === 2) {
+        let depositAmount = Number(prompt("Enter deposit amount:"));
+        if (!isNaN(depositAmount) && depositAmount > 0) {
+          balance += depositAmount;
+          alert("Deposit successful. Your new balance is ₦" + balance);
+        } else {
+          alert("Invalid amount. Deposit failed.");
+        }
+      } else if (choice === 3) {
+        let withdrawalAmount = Number(prompt("Enter withdrawal amount:"));
+        if (
+          !isNaN(withdrawalAmount) &&
+          withdrawalAmount > 0 &&
+          withdrawalAmount <= balance
+        ) {
+          balance -= withdrawalAmount;
+          alert("Withdrawal successful. Your new balance is ₦" + balance);
+        } else {
+          alert("Invalid amount or insufficient funds. Withdrawal failed.");
+        }
+      } else if (choice === 4) {
+        let transferAmount = Number(prompt("Enter transfer amount:"));
+        if (
+          !isNaN(transferAmount) &&
+          transferAmount > 0 &&
+          transferAmount <= balance
+        ) {
+          let recipient = prompt("Enter Account Name");
+          alert(
+            "Transfer of ₦" +
+              transferAmount +
+              " to " +
+              recipient +
+              " successful."
+          );
+          balance -= transferAmount;
+        } else {
+          alert("Invalid amount or insufficient funds. Transfer failed.");
+        }
+      } else {
+        alert("Invalid choice. Please select a valid option.");
+      }
+    </script>
+  </body>
+</html>
